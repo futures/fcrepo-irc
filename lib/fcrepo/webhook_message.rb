@@ -7,6 +7,7 @@ module Fcrepo
     def initialize message
       self.message = Nokogiri::XML(message)
       self.namespaces = {'a' => 'http://www.w3.org/2005/Atom'}
+         
     end
 
     def identifier
@@ -18,7 +19,7 @@ module Fcrepo
     end
     
     def repository_url
-      message.xpath('/a:entry/a:title/@xml:base', namespaces).value
+      message.xpath('/a:entry/a:title', namespaces).attribute('base').value
     end
 
   end
